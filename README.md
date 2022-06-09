@@ -1,2 +1,2 @@
 # Tenx
-获取当前全部文件后，找到myWidget_Tenx.exe即可食用。
+After getting all the current files, find <myWidget_Tenx.exe> then you can eat it.
