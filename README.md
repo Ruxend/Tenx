@@ -1,2 +1,2 @@
 # Tenx
-获取全部文件，找到myWidget_Tenx.exe即可食用。
+获取当前全部文件后，找到myWidget_Tenx.exe即可食用。
