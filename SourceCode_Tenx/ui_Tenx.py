@@ -26,7 +26,7 @@ class ui_Tenx():
 		"""窗体居中"""
 		screen = QDesktopWidget().screenGeometry()				# 获取屏幕坐标系
 		size = self.geometry()									# 获取窗口坐标系
-		self.move(int((screen.width()-size.width())/2), int((screen.height()-size.height())/2) ) # 窗体居中显示	
+		self.move(int((screen.width()-size.width())/2), int((screen.height()-size.height())/2) ) # 窗体居中显示
 		# 中心QWidget####################################################
 		self.master = QWidget(self)
 		self.frame = QFrame(self.master)
@@ -91,7 +91,7 @@ class ui_Tenx():
 	菜单栏/状态栏/工具栏
 	"""
 	def menubar(self):
-		"""菜单栏"""	
+		"""菜单栏"""
 		self.menubar = self.menuBar()
 		# 一级菜单
 		self.file = self.menubar.addMenu("File(&F)")
@@ -126,7 +126,7 @@ class ui_Tenx():
 		self.progressbar.setValue(0)  						# 设置进度条的初始值
 		self.progressbar.setInvertedAppearance(False) 		# True进度条从左到右(水平进度条)/从上到下(垂直进度条)
 		self.basictimer = QBasicTimer()  					# 进度条计时器
-		self.step = 0 
+		self.step = 0
 		self.progressbar.hide() 							# 设置初始状态
 		self.setStatusBar(self.statusbar)
 		self.statusbar.addPermanentWidget(self.statusbar_label_time)
@@ -169,7 +169,7 @@ class ui_Tenx():
 					self.entry_1.setAlignment(Qt.AlignLeft)
 					self.label_1.setBuddy(self.entry_1) 							# 伙伴关系
 					self.groupbox_1_grid_1.addWidget(self.entry_1, self.index, self.cindex, 1, 6)
-				
+
 		# "text"
 		self.text = QTextBrowser()#QTextEdit()
 		self.text.setObjectName("text")
