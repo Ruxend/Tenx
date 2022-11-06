@@ -7,7 +7,8 @@ from PyQt5.QtWidgets import (QApplication,QMainWindow,QDockWidget,QWidget,QFrame
 						QFormLayout,QListWidget,QScrollBar,QDesktopWidget,QProgressBar,
 						QShortcut)
 from PyQt5.QtGui import (QFont,QIcon,QPixmap,QColor,QTextCursor,QPalette,QKeySequence)
-from PyQt5.QtCore import (Qt,QFile,QTimer,QDateTime,QThread,pyqtSignal,QBasicTimer,QObject)
+from PyQt5.QtCore import (Qt,QFile,QTimer,QDateTime,QThread,pyqtSignal,QBasicTimer,QObject,
+						QCoreApplication)
 # from PyQt5.QtMultimedia import QAudioInput,QAudioOutput,QAudioDeviceInfo
 import os,sys,time
 from res import res
@@ -26,10 +27,10 @@ class myWidget_Tenx(QMainWindow, ui_Tenx):
 		QShortcut(QKeySequence("Return"), self, self.Tenx_confirm)
 		self.btn_quit.clicked.connect(self.close)					# 连接槽
 		QShortcut(QKeySequence("Escape"), self, self.close)
-	
+
 	def Tenx_confirm(self):
 		self.entry_1_value = self.entry_1.text()
-		if self.entry_1_value=="": 
+		if self.entry_1_value=="":
 			self.text.append("----------Oops！Please Input All Necessary Parameters！----------\n")
 			self.refresh_color()
 			self.statusbar.showMessage("请输入必要参数!", 1000)
@@ -44,7 +45,7 @@ class myWidget_Tenx(QMainWindow, ui_Tenx):
 	# 	quit = QMessageBox.question(self, "Quit", "Do you want to quit ?", QMessageBox.Ok | QMessageBox.Cancel, QMessageBox.Ok)
 	# 	if quit == QMessageBox.Ok:
 	# 		self.close()
-	
+
 	def work_start(self):
 		self.btn_confirm.setDisabled(True)  	# 设置按钮不可用
 		self.btn_confirm.setText("Waiting...")
@@ -74,12 +75,12 @@ class myWidget_Tenx(QMainWindow, ui_Tenx):
 		self.text.append("\n----------Done! Data Output Successfully!----------\n")
 		self.refresh_color()
 		self.statusbar.showMessage(f"处理完成!", 15000)
-		
+
 	def refresh_color(self):
 		self.text.moveCursor(QTextCursor.End)	   # 使滚动条位置一直处于最后
 		self.text.setTextColor(QColor(randint(0,255),randint(0,255),randint(0,255),255)) # 改变text字体颜色
 		self.text.update()
-	
+
 	# 每一个QObject对象或其子对象都有一个QObject.timerEvent方法
 	# 为了响应定时器的超时事件，需要重写进度条的timerEvent方法
 	def closeEvent(self, event):
@@ -90,10 +91,10 @@ class myWidget_Tenx(QMainWindow, ui_Tenx):
 			self.signal_child_3.emit()
 		else:
 			event.ignore()
-	
+
 if __name__ == "__main__":
+	QCoreApplication.setAttribute(Qt.AA_EnableHighDpiScaling)	# 适应高分辨率屏幕
 	app = QApplication(sys.argv)
 	window = myWidget_Tenx()
 	window.show()
 	sys.exit(app.exec())
-	

@@ -22,7 +22,7 @@ class ui_Tenx():
 	def setupUi(self, QMainWindow):
 		self.setWindowTitle("Tool of Vip Video") 				# 设置窗口标题
 		self.setWindowIcon(QIcon(res.path("res\\win.ico")))		# 设置窗口图标
-		self.resize(1000, 800) # 设置窗口大小
+		self.resize(600, 500) # 设置窗口大小
 		"""窗体居中"""
 		screen = QDesktopWidget().screenGeometry()				# 获取屏幕坐标系
 		size = self.geometry()									# 获取窗口坐标系
