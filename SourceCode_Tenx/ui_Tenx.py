@@ -5,7 +5,7 @@ from PyQt5.QtWidgets import (QApplication,QMainWindow,QDockWidget,QWidget,QFrame
 						QInputDialog,QFileDialog,QFontDialog,QColorDialog,QToolBar,
 						QMenuBar,QStatusBar,QGroupBox,QGridLayout,QHBoxLayout,QVBoxLayout,
 						QFormLayout,QListWidget,QScrollBar,QDesktopWidget,QProgressBar,
-						QTextBrowser)
+						QTextBrowser,QComboBox)
 from PyQt5.QtGui import (QFont,QIcon,QPixmap,QMovie,QColor,QTextCursor,QPalette)
 from PyQt5.QtCore import (Qt,QFile,QTimer,QDateTime,QThread,pyqtSignal,pyqtSlot,
 						QBasicTimer,QCoreApplication)
@@ -152,7 +152,7 @@ class ui_Tenx():
 		_translate = QCoreApplication.translate
 		"""控件内容"""
 		conText = (("请输入视频链接:", "entry_1"),
-					)
+					("选择通道:", "combo_1"))
 		for self.index, self.r in enumerate(conText):
 			for self.cindex, self.c in enumerate(self.r):
 				if self.c == "请输入视频链接:":
@@ -169,6 +169,17 @@ class ui_Tenx():
 					self.entry_1.setAlignment(Qt.AlignLeft)
 					self.label_1.setBuddy(self.entry_1) 							# 伙伴关系
 					self.groupbox_1_grid_1.addWidget(self.entry_1, self.index, self.cindex, 1, 6)
+				if self.c == "选择通道:":
+					self.label_2 = QLabel()
+					self.label_2.setObjectName("label_2")
+					self.label_2.setText(_translate("self", self.c))
+					self.label_2.setFont(QFont("微软雅黑", 9, QFont.Normal))
+					self.groupbox_1_grid_1.addWidget(self.label_2, self.index, self.cindex, 1, 1)
+				elif self.c == "combo_1":
+					self.combo_1 = QComboBox()
+					self.combo_1.setObjectName("combo_1")
+					self.combo_1.setCurrentIndex(0)    # 设置默认显示的值，不设置则默认为0
+					self.groupbox_1_grid_1.addWidget(self.combo_1, self.index, self.cindex, 1, 2)
 
 		# "text"
 		self.text = QTextBrowser()#QTextEdit()
@@ -196,4 +207,4 @@ class ui_Tenx():
 
 
 
-# ui_Mainwindow()
+# ui_Tenx()

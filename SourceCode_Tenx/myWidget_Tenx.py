@@ -27,6 +27,20 @@ class myWidget_Tenx(QMainWindow, ui_Tenx):
 		QShortcut(QKeySequence("Return"), self, self.Tenx_confirm)
 		self.btn_quit.clicked.connect(self.close)					# 连接槽
 		QShortcut(QKeySequence("Escape"), self, self.close)
+		self.combo_1.currentIndexChanged.connect(self.combo_1_change) 	# 连接槽
+		self.dic_aisle = {"虾米": "https://jx.xmflv.com/?url=",
+						"七哥":"https://jx.nnxv.cn/tv.php?url=",
+						"无名小站":"http://www.wmxz.wang/video.php?url=",
+						"冰豆":"https://bd.jx.cn/?url=",
+						"爱豆":"https://jx.aidouer.net/?url=",
+						"听乐":"https://jx.dj6u.com/?url=",
+						"MPlayer":"https://www.mtosz.com/erzi.php?url=",
+						"云解析":"https://jx.yparse.com/index.php?url="}
+		for k in list(self.dic_aisle.keys()):
+			self.combo_1.addItem(k)
+
+	def combo_1_change(self):
+		self.port_value = self.dic_aisle[self.combo_1.currentText()]
 
 	def Tenx_confirm(self):
 		self.entry_1_value = self.entry_1.text()
@@ -51,7 +65,7 @@ class myWidget_Tenx(QMainWindow, ui_Tenx):
 		self.btn_confirm.setText("Waiting...")
 		self.text.append("------------The program is running!------------\n")
 		self.statusbar.showMessage("请稍等,正在处理...", 3600000)
-		self.thread = WorkThread_Tenx(entry_1=self.entry_1_value)
+		self.thread = WorkThread_Tenx(entry_1=self.entry_1_value, port=self.port_value)
 		# 将线程th的信号finishSignal和UI主线程中的槽函数button_finish进行连接
 		self.thread.finishSignal.connect(self.work_finish)
 		self.thread.signal_1.connect(self.signal_1_call)

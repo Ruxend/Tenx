@@ -13,22 +13,22 @@ class WorkThread_Tenx(QThread):
 	finishSignal = pyqtSignal()
 	signal_1 = pyqtSignal()
 	signal_2 = pyqtSignal()
-	def __init__(self, entry_1, parent=None):
+	def __init__(self, entry_1, port, parent=None):
 		super().__init__(parent)
 		self.entry_1 = entry_1
+		self.port = port
 
 	def run(self):
-		port = "http://www.wmxz.wang/video.php?url=" 		# 视频解析网站地址
 		if re.match(r"^https?:/{2}\w.+$", self.entry_1): 	# 正则表达式判定是否为合法连接
 			ip = parse.quote_plus(self.entry_1)  			# 视频连接加密
-			webbrowser.open(port + ip)  					# 用浏览器打开网址
+			webbrowser.open(self.port + ip)  					# 用浏览器打开网址
 			self.signal_1.emit()
 		else:
 			self.signal_2.emit()
 		self.finishSignal.emit()  		# 发射程序结束输出
 		return
-		
-		
+
+
 # entry_1 = "D:/Dev/Object/Python/test/111.xls"
 # entry_2 = "111"
 # entry_3 = "D:/Dev/Object/Python/test1"
